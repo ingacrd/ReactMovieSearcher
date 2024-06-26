@@ -31,22 +31,34 @@ h1 {
     letter-spacing: 0.9px;
     background: linear-gradient(90deg,
             rgba(249, 211, 180, 1) 0%,
-            rgba(249, 211, 180, 0) 100%);
+            rgba(249, 211, 180, 0.2) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: fit-content;
 }
+.orderByBox {
+    width: auto;
+      margin: 0.5rem 0 0.5rem;    
+      display: flex;
+      align-items: center;
+      justify-content: center;  
+      padding: 1rem 1rem;
+      border-radius: 3rem;
+      background: #1f2123;
+      -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
+      box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527    
+}
 
 .search {
-    width: 71%;
-    margin: 4rem 0 2rem;
+    width: 80%;
+    margin: 4rem 0 1rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 1.5rem 1.75rem;
+    padding: 1.5rem 1.5rem;
     border-radius: 3rem;
     background: #1f2123;
     -webkit-box-shadow: 5px 5px 7px #1c1d1f, -5px -5px 7px #222527;
@@ -59,7 +71,7 @@ h1 {
     font-size: 1.5rem;
     font-family: var(--font-raleway);
     font-weight: 500;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
 
     outline: none;
     color: #a1a1a1;
@@ -161,7 +173,7 @@ h1 {
     left: 0;
 }
 
-.movie div:nth-of-type(3) span {
+.movie div:nth-of-type(3) spam {
     font-family: "Raleway", sans-serif;
     text-transform: uppercase;
     font-size: 13px;
@@ -173,7 +185,7 @@ h1 {
 .movie div:nth-of-type(3) h3 {
     margin-top: 5px;
     font-family: "Roboto Slab", serif;
-    color: #f9d3b4;
+    color: #f9b4ba;
 }
 
 .movie:hover div:nth-of-type(2) {
@@ -189,18 +201,48 @@ h1 {
     opacity: 1;
 }
 
-@media screen and (max-width: 600px) {
+.orderBy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+    margin-left: 1rem;
+
+    font-family: var(--font-raleway);
+    font-weight: 500;
+    padding-right: 1rem;
+    
+    outline: none;
+    color: #a1a1a1;
+}
+
+.orderIcons {
+    width: 1rem;
+    --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.arrows {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 900px) {
     .app {
         padding: 4rem 2rem;
     }
 
     .search {
-        padding: 1rem 1.75rem;
+        padding: 1rem 1rem;
         width: 100%;
     }
 
     .search input {
         font-size: 1rem;
+    }
+    .orderBy {
+        font-size: 0.8rem;
     }
 
     .search img {
@@ -209,7 +251,7 @@ h1 {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .app {
         padding: 4rem 1rem;
     }
@@ -226,4 +268,5 @@ h1 {
         width: "100%";
         margin: 1rem;
     }
+
 }
