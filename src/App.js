@@ -3,7 +3,7 @@ import './App.css';
 import SearchIcon from './search.svg';
 import React from 'react'
 import MovieCard from'./MovieCard';
-import {ChevronDownIcon, ChevronUpIcon} from "@heroicons/react/16/solid/index.js";
+import OrderMoviesBy from './OrderMoviesBy';
 
 //17da2dde
 const API_URL = 'https://omdbapi.com?apikey=17da2dde';
@@ -12,7 +12,10 @@ const App = () => {
 
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [sortOrder, setSortOrder] = useState({
+    Year: '',
+    Title: ''
+  });
 
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
@@ -27,13 +30,17 @@ const App = () => {
 
     const sortMoviesBy = (type) => {
       const sortedMovies = [...movies].sort((a,b)=>{
-          return sortOrder === 'asc'
+          return sortOrder[type] === 'asc'
         ? (type === 'Year' ? (a.Year - b.Year) : (a.Title.localeCompare(b.Title)))
         : (type === 'Year' ? (b.Year - a.Year) : (b.Title.localeCompare(a.Title)));
         }
       )
       setMovies(sortedMovies);
-      sortOrder === 'asc'? setSortOrder('desc') : setSortOrder('asc');
+      setSortOrder((prevSortOrder)=>({
+        ...prevSortOrder,
+        [type]: prevSortOrder[type] === 'asc'? 'desc' : 'asc',
+        [type === 'Year' ? 'Title' : 'Year']: ''
+      }));
     }
 
   return (
@@ -49,28 +56,11 @@ const App = () => {
             src={SearchIcon}
             alt='search'
             onClick={() =>searchMovies(searchTerm)}
-          />
-          
-          
+          />       
       </div>
       <div className="orderByBox">
-
-            <div className = "orderBy" onClick={()=>sortMoviesBy('Year')}>
-              Year 
-              <div className="arrows">
-                <ChevronUpIcon className="orderIcons"/>
-                <ChevronDownIcon className="orderIcons"/> 
-              </div>
-            </div>
-            <div className = "orderBy" onClick={()=>sortMoviesBy('Title')}>
-              Title 
-              <div className="arrows">
-                <ChevronUpIcon className="orderIcons"/>
-                <ChevronDownIcon className="orderIcons"/>
-              </div>
-            </div>
-
-
+        <OrderMoviesBy type ="Year" sortMoviesBy = {sortMoviesBy} sortOrder={sortOrder.Year}/>
+        <OrderMoviesBy type ="Title" sortMoviesBy = {sortMoviesBy} sortOrder={sortOrder.Title}/>
       </div>
       
       

@@ -223,6 +223,12 @@ h1 {
         color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.inactiveIcons {
+        width: 1rem;
+        --tw-text-opacity: 0.5;
+            color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .arrows {
     display: flex;
     flex-direction: column;
